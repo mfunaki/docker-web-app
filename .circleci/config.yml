@@ -17,7 +17,7 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker
-      - run: docker build -t mfunaki/docker-web-app 
+      - run: docker build -t mfunaki/docker-web-app .
       - run:
           command: |
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
