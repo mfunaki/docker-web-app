@@ -5,9 +5,15 @@
   "author": "Masahiko Funaki <masahiko@circleci.com>",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "test": "jest --forceExit --coverage --verbose"
   },
   "dependencies": {
-    "express": "^4.16.1"
+    "express": "^4.16.1",
+    "supertest": "^4.0.2"
+  },
+  "devDependencies": {
+    "expect": "^26.4.2",
+    "jest": "^26.4.2"
   }
 }
