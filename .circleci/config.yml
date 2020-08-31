@@ -11,16 +11,15 @@ jobs:
       - checkout
       - run: npm install
       - run: npm test
-  deploy:
+  compose:
     docker:
       - image: cibuilds/docker:19.03
     steps:
       - checkout
       - setup_remote_docker
-      - run: chmod +x ./build-images.sh
-      - run: ./build-images.sh
-      - deploy:
+      - run:
           command: |
+            docker build -t mfunaki/docker-web-app
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
         
@@ -38,6 +37,6 @@ workflows:
   build-deploy:
     jobs:
       - build-and-test
-      - deploy:
+      - compose:
           requires:
             - build-and-test
