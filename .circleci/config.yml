@@ -17,9 +17,9 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker
+      - run: docker build -t mfunaki/docker-web-app 
       - run:
           command: |
-            docker build -t mfunaki/docker-web-app            
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
         
